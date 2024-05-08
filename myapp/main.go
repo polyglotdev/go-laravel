@@ -5,7 +5,7 @@ import (
 )
 
 type application struct {
-	App *Celeritas.celeritas
+	App *celeritas.Celeritas
 }
 
 func main() {
