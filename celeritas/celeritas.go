@@ -13,8 +13,21 @@ type Celeritas struct {
 }
 
 func (c Celeritas) New(rootPath string) error {
-	// create the root folder
-	err := c.CreateDirIfNotExist(rootPath)
+	// create the initial directory structure
+	pathConfig := initPaths{
+		rootPath: rootPath,
+		folderNames: []string{
+			"handlers",
+			"migrations",
+			"views",
+			"data",
+			"public",
+			"tmp",
+			"logs",
+			"middleware",
+		},
+	}
+	err := c.Init(pathConfig)
 	if err != nil {
 		return err
 	}
