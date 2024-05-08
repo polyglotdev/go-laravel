@@ -9,4 +9,5 @@ type application struct {
 }
 
 func main() {
+	initApplication()
 }
