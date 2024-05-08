@@ -12,6 +12,7 @@ type Celeritas struct {
 	Version string
 }
 
+// New creates the initial directory structure for a new Celeritas project.
 func (c Celeritas) New(rootPath string) error {
 	// create the initial directory structure
 	pathConfig := initPaths{
@@ -27,6 +28,7 @@ func (c Celeritas) New(rootPath string) error {
 			"middleware",
 		},
 	}
+	// initialize the directory structure and check for errors.
 	err := c.Init(pathConfig)
 	if err != nil {
 		return err
