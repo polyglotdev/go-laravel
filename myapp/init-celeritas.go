@@ -17,7 +17,7 @@ func initApplication() *application {
 	}
 
 	// Initialize a new Celeritas object.
-	cel := celeritas.Celeritas{}
+	cel := &celeritas.Celeritas{}
 	// Call the New method on the Celeritas object, passing in the current working directory.
 	// The New method is responsible for setting up the initial directory structure for the application.
 	if err := cel.New(path); err != nil {
@@ -30,6 +30,6 @@ func initApplication() *application {
 
 	// Return a new application object, with the Celeritas object embedded in it.
 	return &application{
-		App: &cel,
+		App: cel,
 	}
 }
