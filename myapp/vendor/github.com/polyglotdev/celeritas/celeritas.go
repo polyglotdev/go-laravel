@@ -3,6 +3,9 @@ package celeritas
 import (
 	"fmt"
 	"github.com/joho/godotenv"
+	"log"
+	"os"
+	"strconv"
 )
 
 const (
@@ -12,13 +15,16 @@ const (
 
 // Celeritas is the main struct for the Celeritas framework.
 type Celeritas struct {
-	AppName string
-	Debug   bool
-	Version string
+	AppName  string
+	Debug    bool
+	Version  string
+	ErrorLog *log.Logger
+	InfoLog  *log.Logger
+	RootPath string
 }
 
 // New creates the initial directory structure for a new Celeritas project.
-func (c Celeritas) New(rootPath string) error {
+func (c *Celeritas) New(rootPath string) error {
 	// create the initial directory structure
 	pathConfig := initPaths{
 		rootPath: rootPath,
@@ -50,6 +56,11 @@ func (c Celeritas) New(rootPath string) error {
 		return err
 	}
 
+	infoLog, errLog := c.startLoggers()
+	c.InfoLog = infoLog
+	c.ErrorLog = errLog
+	c.Debug, _ = strconv.ParseBool(os.Getenv("DEBUG"))
+	c.Version = Version
 	return nil
 }
 
@@ -58,7 +69,7 @@ func (c Celeritas) New(rootPath string) error {
 // It iterates over the folder names, and for each one, it calls the CreateDirIfNotExist method.
 // If the CreateDirIfNotExist method returns an error, it immediately returns this error.
 // If no errors occur during the folder creation, it returns nil.
-func (c Celeritas) Init(p initPaths) error {
+func (c *Celeritas) Init(p initPaths) error {
 	// Get the root path from the initPaths struct.
 	root := p.rootPath
 	// Iterate over the folder names in the initPaths struct.
@@ -83,4 +94,19 @@ func (c *Celeritas) checkDotEnv(path string) error {
 	}
 
 	return nil
+}
+
+// startLoggers initializes and returns two loggers: an info logger and an error logger.
+// The info logger is used for general logging of information, while the error logger is used for logging errors.
+// Both loggers write to standard output and include the date and time in their output.
+// The error logger also includes the file name and line number where the log call was made.
+// The rootPath parameter is currently unused.
+func (c *Celeritas) startLoggers() (*log.Logger, *log.Logger) {
+	var infoLog *log.Logger
+	var errLog *log.Logger
+
+	infoLog = log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	errLog = log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
+	return infoLog, errLog
 }
