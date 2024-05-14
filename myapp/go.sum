@@ -1,6 +1,4 @@
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
-github.com/polyglotdev/celeritas v1.0.2-0.20240508110042-8e0d50add52b h1:6hUPadSS3u4rQA005yAwq7GupxJUZh2jGby/BBjW/kI=
-github.com/polyglotdev/celeritas v1.0.2-0.20240508110042-8e0d50add52b/go.mod h1:OdWJgyeGcZjba7uFa2SF7lbiR5QA9WZNcVAvOLNtuj0=
-github.com/polyglotdev/celeritas v1.0.2-0.20240508123048-df25e2b1561b h1:J71M654mWRF/NPnZOBhuAP76FnLxGzT1MasGn7n+Hp4=
-github.com/polyglotdev/celeritas v1.0.2-0.20240508123048-df25e2b1561b/go.mod h1:OdWJgyeGcZjba7uFa2SF7lbiR5QA9WZNcVAvOLNtuj0=
+github.com/polyglotdev/celeritas v1.0.3-0.20240514215406-03071af76df1 h1:c12fk6MxMxEkifcjwQpHzWmPC8G/bMz3xLu5lsb4JiU=
+github.com/polyglotdev/celeritas v1.0.3-0.20240514215406-03071af76df1/go.mod h1:OdWJgyeGcZjba7uFa2SF7lbiR5QA9WZNcVAvOLNtuj0=

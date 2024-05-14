@@ -26,7 +26,8 @@ func initApplication() *application {
 	}
 
 	cel.AppName = "myapp"
-	cel.Debug = true
+
+	cel.InfoLog.Println("Debug is set to", cel.Debug)
 
 	// Return a new application object, with the Celeritas object embedded in it.
 	return &application{
