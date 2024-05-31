@@ -1,4 +1,8 @@
+github.com/go-chi/chi/v5 v5.0.12 h1:9euLV5sTrTNTRUU9POmDUvfxyj6LAABLUcEWO+JJb4s=
+github.com/go-chi/chi/v5 v5.0.12/go.mod h1:DslCQbL2OYiznFReuXYUmQ2hGd1aDpCnlMNITLSKoi8=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/polyglotdev/celeritas v1.0.3-0.20240514215406-03071af76df1 h1:c12fk6MxMxEkifcjwQpHzWmPC8G/bMz3xLu5lsb4JiU=
 github.com/polyglotdev/celeritas v1.0.3-0.20240514215406-03071af76df1/go.mod h1:OdWJgyeGcZjba7uFa2SF7lbiR5QA9WZNcVAvOLNtuj0=
+github.com/polyglotdev/celeritas v1.0.4 h1:vFH5Kq6yh+GrJUcy0le/8FrrZ2qRh+LZvic/kjWoPME=
+github.com/polyglotdev/celeritas v1.0.4/go.mod h1:dx2i+TAjV7qzMqp6FueipBh1cRQgEi178XfcSE0Iq9E=
