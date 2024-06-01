@@ -3,8 +3,11 @@ package render
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"strings"
+
+	"github.com/CloudyKit/jet/v6"
 )
 
 // Render is a struct that contains the configuration for the renderer.
@@ -14,6 +17,7 @@ type Render struct {
 	Secure     bool
 	Port       string
 	ServerName string
+	JetViews   *jet.Set
 }
 
 // TemplateData is a struct that contains the data to be passed to the template.
@@ -46,7 +50,50 @@ func (c *Render) Page(w http.ResponseWriter, r *http.Request, view string, varia
 	switch strings.ToLower(c.Renderer) {
 	case "go":
 		return c.GoPage(w, r, view, data)
+	case "jet":
+		return c.JetPage(w, r, view, variables, data)
 	}
+	return nil
+}
+
+// JetPage is a method on the Render struct that renders a Jet template page.
+// It takes a http.ResponseWriter, http.Request, a string representing the view, and an interface{} for data.
+// The method first attempts to parse the template file corresponding to the view.
+// If an error occurs during parsing, it returns the error.
+// If the data passed is not nil, it asserts the data to be of type *TemplateData.
+// It then executes the template with the TemplateData and writes the output to the http.ResponseWriter.
+func (c *Render) JetPage(w http.ResponseWriter, r *http.Request, templateName string, variables interface{}, data interface{}) error {
+	var vars jet.VarMap
+	if variables != nil {
+		var ok bool
+		vars, ok = variables.(jet.VarMap)
+		if !ok {
+			return fmt.Errorf("variables is not of type jet.VarMap")
+		}
+	} else {
+		vars = make(jet.VarMap) // Initialize vars to an empty jet.VarMap if variables is nil
+	}
+
+	td := &TemplateData{}
+	if data != nil {
+		var ok bool
+		td, ok = data.(*TemplateData)
+		if !ok {
+			return fmt.Errorf("data is not of type *TemplateData")
+		}
+	}
+
+	t, err := c.JetViews.GetTemplate(fmt.Sprintf("%s.jet", templateName))
+	if err != nil {
+		log.Println("Error getting template:", err)
+		return err
+	}
+
+	if err := t.Execute(w, vars, td); err != nil {
+		log.Println("Error executing template "+templateName+":", err)
+		return err
+	}
+
 	return nil
 }
 
