@@ -1,0 +1,3 @@
+[submodule "celeritas"]
+	path = celeritas
+	url = https://github.com/polyglotdev/celeritas.git
