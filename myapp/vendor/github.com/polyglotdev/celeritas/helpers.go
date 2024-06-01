@@ -38,7 +38,6 @@ func (c *Celeritas) CreateDirIfNotExist(path string) error {
 // If the file exists or is successfully created, it returns nil.
 // If there is an error creating the file, it returns the error.
 func (c *Celeritas) CreateFileIfNotExist(path string) error {
-	const mode = 0644
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		file, err := os.Create(path)
 		if err != nil {

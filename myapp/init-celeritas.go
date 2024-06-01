@@ -5,6 +5,8 @@ import (
 	"os"
 
 	"github.com/polyglotdev/celeritas"
+
+	"github.com/polyglotdev/myapp/handlers"
 )
 
 // initApplication is a function that initializes the application.
@@ -29,8 +31,17 @@ func initApplication() *application {
 
 	cel.InfoLog.Println("Debug is set to", cel.Debug)
 
-	// Return a new application object, with the Celeritas object embedded in it.
-	return &application{
+	// handlers
+	myHandlers := &handlers.Handlers{
 		App: cel,
 	}
+
+	// Return a new application object, with the Celeritas object embedded in it.
+	app := &application{
+		App:      cel,
+		Handlers: myHandlers,
+	}
+
+	app.App.Routes = app.routes()
+	return app
 }
