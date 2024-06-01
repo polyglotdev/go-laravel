@@ -16,7 +16,7 @@ import (
 
 const (
 	// Version is the current version of the Celeritas framework.
-	Version = "1.0.0"
+	Version = "1.0.9"
 )
 
 // Celeritas is the main struct for the Celeritas framework.
@@ -84,7 +84,7 @@ func (c *Celeritas) New(rootPath string) error {
 		renderer: os.Getenv("RENDERER"),
 	}
 
-	c.Render = c.createRender(c)
+	c.createRender()
 
 	return nil
 }
@@ -158,12 +158,11 @@ func (c *Celeritas) startLoggers() (*log.Logger, *log.Logger) {
 	return infoLog, errLog
 }
 
-func (c *Celeritas) createRender(cel *Celeritas) *render.Render {
+func (c *Celeritas) createRender() {
 	myRenderer := render.Render{
-		Renderer: cel.config.renderer,
-		RootPath: cel.RootPath,
-		Port:     cel.config.port,
+		Renderer: c.config.renderer,
+		RootPath: c.RootPath,
+		Port:     c.config.port,
 	}
-
-	return &myRenderer
+	c.Render = &myRenderer
 }

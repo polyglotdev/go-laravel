@@ -6,7 +6,7 @@ replace github.com/polyglotdev/celeritas => /Users/domhallan/learning/udemy/cele
 
 require (
 	github.com/go-chi/chi/v5 v5.0.12
-	github.com/polyglotdev/celeritas v1.0.7
+	github.com/polyglotdev/celeritas v1.0.9
 )
 
 require github.com/joho/godotenv v1.5.1 // indirect
