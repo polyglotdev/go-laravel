@@ -46,8 +46,6 @@ func (c *Render) Page(w http.ResponseWriter, r *http.Request, view string, varia
 	switch strings.ToLower(c.Renderer) {
 	case "go":
 		return c.GoPage(w, r, view, data)
-	case "jet":
-
 	}
 	return nil
 }
